@@ -1,7 +1,7 @@
 
 = get_iijmio: IIJmio利用状況情報取得
 
-IIJmio[https://www.iijmio.jp/]の会員ページから下記の情報を取得し、メールで送信する。
+IIJmio[https://www.iijmio.jp/] の会員ページから下記の情報を取得し、メールで送信する。
 
 - データ利用量
   - 直近3日間の利用履歴
@@ -13,7 +13,7 @@ IIJmio[https://www.iijmio.jp/]の会員ページから下記の情報を取得�
   get_iijmio.rb [config file]
 
 - config fileが指定されない場合、'config.yaml'が読み込まれる。
-- configの内容が不足する場合、取得は行わず終了する。
+- configの内容が不足している場合、取得は行わず終了する。
 
 
 == config fileの構造
