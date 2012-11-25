@@ -1,0 +1,11 @@
+--- 
+config: 
+  logfile: get_iijmio.log
+  smtp_fromaddress: 
+  smtp_port: 25
+  mail_subject: "【IIJmio】利用履歴"
+  loglevel: warn
+  smtp_host: localhost
+  smtp_toaddress: 
+  id: ""
+  password: ""

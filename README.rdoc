@@ -1,0 +1,36 @@
+
+= get_iijmio: IIJmio利用状況情報取得
+
+IIJmio[https://www.iijmio.jp/]の会員ページから下記の情報を取得し、メールで送信する。
+
+- データ利用量
+  - 直近3日間の利用履歴
+- クーポン残量
+  - 総残量のみ
+
+== 使い方
+
+  get_iijmio.rb [config file]
+
+- config fileが指定されない場合、'config.yaml'が読み込まれる。
+- configの内容が不足する場合、取得は行わず終了する。
+
+
+== config fileの構造
+
+- config =>
+  - logfile => ログ出力先ファイル名。何も指定していない場合STDOUT
+  - loglevel => 'fatal', 'error', 'warn', 'info', or 'debug'. デフォルトはwarn。
+  - smtp_host => SMTPサーバ
+  - smtp_port => SMTPサーバのポート番号
+  - smtp_fromaddress => メール送信時のFromに使用するアドレス
+  - smtp_toaddress => メールの送信先アドレス
+  - mail_subject => メールのSubject
+  - id => サイトへログインする際に使用するmioID (平文)
+  - password => サイトへログインする際に使用するパスワード (平文)
+
+
+== ライセンス
+
+MITライセンス
+
