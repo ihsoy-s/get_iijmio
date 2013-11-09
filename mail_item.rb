@@ -1,9 +1,13 @@
 #!/usr/bin/ruby -w
+# -*- encoding: utf-8 -*-
+
 #
 # = メール送信用ライブラリ
 #
 
-$KCODE='UTF8'
+if RUBY_VERSION < '1.9.0' then
+  $KCODE='UTF8'
+end
 
 require 'kconv'
 require 'net/smtp'
@@ -317,16 +321,16 @@ class MAIL_ITEM
 	#
 	# メールヘッダを順に出力する。
 	# @header のハッシュに含まれているもののうち下記のものを出力。
-	#   - date
-	#   - from
-	#   - to
-	#   - cc
-	#   - bcc
-	#   - subject
-	#   - message-id
-	#   - mime-version
-	#   - reply-to
-	#   - in-reply-to
+	# * date
+	# * from
+	# * to
+	# * cc
+	# * bcc
+	# * subject
+	# * message-id
+	# * mime-version
+	# * reply-to
+	# * in-reply-to
 	#
 	# ==== 戻り値
 	#

@@ -1,31 +1,34 @@
 #!/usr/bin/ruby -w
+# -*- encoding: utf-8 -*-
 
 =begin
 
 = IIJmioのサイトから利用状況の情報を取得する
 
-- データ利用量
-  - 直近3日間の利用履歴
-- クーポン残量
-  - 総残量のみ
+* データ利用量
+  * 直近3日間の利用履歴
+* クーポン残量
+  * 総残量のみ
 
 = configfileの構造
 
--config =>
-  - logfile => ログ出力先ファイル名。何も指定していない場合STDOUT
-  - loglevel => 'fatal', 'error', 'warn', 'info', or 'debug'. デフォルトはwarn。
-  - smtp_host => SMTPサーバ
-  - smtp_port => SMTPサーバのポート番号
-  - smtp_fromaddress => メール送信時のFromに使用するアドレス
-  - smtp_toaddress => メールの送信先アドレス
-  - mail_subject => メールのSubject
-  - id => サイトへログインする際に使用するmioID (平文)
-  - password => サイトへログインする際に使用するパスワード (平文)
+*config =>
+  * logfile => ログ出力先ファイル名。何も指定していない場合STDOUT
+  * loglevel => 'fatal', 'error', 'warn', 'info', or 'debug'. デフォルトはwarn。
+  * smtp_host => SMTPサーバ
+  * smtp_port => SMTPサーバのポート番号
+  * smtp_fromaddress => メール送信時のFromに使用するアドレス
+  * smtp_toaddress => メールの送信先アドレス
+  * mail_subject => メールのSubject
+  * id => サイトへログインする際に使用するmioID (平文)
+  * password => サイトへログインする際に使用するパスワード (平文)
 
 =end
 
 
-$KCODE='UTF8'
+if RUBY_VERSION < '1.9.0' then
+  $KCODE='UTF8'
+end
 
 require 'yaml'
 require 'logger'
@@ -124,7 +127,7 @@ exit unless result
 
 # send e-mail (エラーでない場合のみ)
 if iijmio.to_s != "" then
-	mail_header['date'] = Time.now
+	mail_header['date'] = Time.now.strftime("%a, %d %b %Y %T %z")
 	mail_body = {'plain' => iijmio.to_s, 'html' => iijmio.to_s}
 
 	mail_item = MAIL_ITEM.new(config['config']['smtp_host'], config['config']['smtp_port'], mail_header, mail_body, logger)
